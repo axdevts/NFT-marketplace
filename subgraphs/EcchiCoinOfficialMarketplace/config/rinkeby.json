@@ -1,0 +1,12 @@
+{
+    "network": "rinkeby",
+    "ArtistNftAddress": "0x41aA0e5Cfa90ebf051BFC77071E95c5D8471c036",
+    "Erc1155CollectibleAddress": "0x5108786b33fa3204a91C013A7672f6A8aF03Fc71",
+    "OfficialMarketPlaceAddress": "0x4760881F6D305Bb85caC2c7D04F21595F64be02D",
+    "EchiCoin": "0xA9a6B2A70274b3755E3d492D3780E09c68C6C9C6",
+    "TestToken": "0x12c2945d9eC78e2c3411cF312836Ba4eA9fe009d",
+  
+    "ArtistStratBlock": "9468908",
+    "Erc1155CollectibleStartBlock": "9468955",
+    "OfficialMarketPlaceStartBlock": "9468990"
+  }

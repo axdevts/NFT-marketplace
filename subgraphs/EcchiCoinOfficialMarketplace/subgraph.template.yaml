@@ -1,0 +1,82 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: artistcontract
+    network: {{network}}
+    source:
+      address: '{{ArtistNftAddress}}'
+      abi: artistcontract
+      startBlock: {{ArtistStratBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Nft
+        - Collector
+        - Artist
+      abis:
+        - name: artistcontract
+          file: ./abis/Artist.json
+      eventHandlers:
+        - event: ArtistNFTMinted(uint256,uint256,address,string,address)
+          handler: handleArtistNftMinted
+      file: ./src/mappings.ts
+  - kind: ethereum/contract
+    name: Erc1155contract
+    network: {{network}}
+    source:
+      address: '{{Erc1155CollectibleAddress}}'
+      abi: Erc1155Contract
+      startBlock: {{Erc1155CollectibleStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Nft
+        - Collector
+      abis:
+        - name: Erc1155Contract
+          file: ./abis/Erc1155Collectable.json
+      eventHandlers:
+        - event: ERC1155NFTMinted(uint256,uint256,address,string,address)
+          handler: handleErc1155NftMinted
+        - event: ERC1155NFTCreated(uint256,uint256,address,string,address,bool)
+          handler: handleErc1155NftCreated
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+      file: ./src/Erc1155Collectible.ts
+  - kind: ethereum/contract
+    name: OfficialMarketplaceContract
+    network: {{network}}
+    source:
+      address: '{{OfficialMarketPlaceAddress}}'
+      abi: OfficialMarkerplaceContract
+      startBlock: {{OfficialMarketPlaceStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - NftSale
+        - FixedPriceSale
+      abis:
+        - name: OfficialMarkerplaceContract
+          file: ./abis/OfficialMarketplace.json
+      eventHandlers:
+        - event: FixedSaleCreated(uint256,bool,uint256,address,uint128,uint64,address,uint256)
+          handler: handleFixedSaleCreated
+        - event: FixedSaleSuccessful(uint256,bool,uint256,address,uint256,address,address)
+          handler: handleFixedSaleSuccessful
+      file: ./src/officialMarket.ts
+
+
+
+
+
+

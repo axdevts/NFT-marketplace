@@ -1,0 +1,13 @@
+{
+    "network": "ropsten",
+    "ArtistNftAddress": "0x62Bf811aD89FC43011A38566e9F4eD2fF70c08c2",
+    "Erc1155CollectibleAddress": "0x0b9DaCB3210eA2877efEC681e099e50fd087deFd",
+    "OfficialMarketPlaceAddress": "0xCE549e89ffc46361443f0B0B178da5BD29CF1D7B",
+    "OfficialMarketPlaceAddressOld": "0xA5A2ecFD1B8e54933ef764d3c991470BdCa8415A",
+    "EchiCoin": "0x9af9b9217686900ae33a7049855d86092c47b2D2",
+    "TestToken": "0x0e47CF183543525208cb56DC3f21aE94B696e810",
+  
+    "ArtistStratBlock": "11212772",
+    "Erc1155CollectibleStartBlock": "11214017",
+    "OfficialMarketPlaceStartBlock": "11226206"
+  }

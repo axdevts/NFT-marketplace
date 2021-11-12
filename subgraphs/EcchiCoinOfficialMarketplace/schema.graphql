@@ -1,0 +1,75 @@
+type Nft @entity {
+  id: ID! # tokenId-concat-contractAdress
+  tokenID: BigInt!
+  amountMinted: BigInt! #always 1 for ERC721
+  contractAddress: String
+  tokenMetadataUri: String!
+  creator: Artist
+  dateMinted: BigInt!
+  owners: [CollectorNfts]! @derivedFrom(field: "nft")
+  erc721Owner: String
+  isOnSale: Boolean
+  type: NftType
+  isERC721: Boolean!
+  isPublicAllowed: Boolean
+  transfers: [NftSale!]! @derivedFrom(field: "nft")
+  allSales: [NftSale!]! @derivedFrom(field: "nft")
+}
+
+type Collector @entity {
+  id: ID!
+  nfts: [CollectorNfts!] @derivedFrom(field: "collector")
+  totalAttributes: BigInt!
+  rank: Rank
+}
+
+type CollectorNfts @entity {
+  id: ID!
+  collector: Collector!
+  nft: Nft
+}
+
+type Artist @entity {
+  id: ID!
+  nftMinted: [Nft!]! @derivedFrom(field: "creator")
+}
+
+enum Rank {
+  Peasant
+  Squire
+  Knight
+  GrandWizard
+}
+
+enum NftType {
+  Game
+  Silver
+  Gold
+  Platinum
+  Legendary
+  Artist
+}
+
+type NftSale @entity {
+  id: ID! #saleContractAddress-tokenId
+  soldPrice: BigDecimal
+  fixedPriceSale: [FixedPriceSale!]! @derivedFrom(field: "fixedArtworkSale")
+  nft: Nft!
+  dateListed: BigInt
+  amountOnSale: BigInt #always 1 for ERC721
+}
+
+type FixedPriceSale @entity {
+  id: ID!
+  saleId: BigInt!
+  tokenID: String!
+  fixedArtworkSale: NftSale
+  fixedPrice: BigDecimal!
+  startingDateTime: BigInt!
+  status: FixedSaleStatus
+}
+
+enum FixedSaleStatus {
+  Active
+  Successful
+}
